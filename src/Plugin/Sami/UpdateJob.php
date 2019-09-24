@@ -166,23 +166,35 @@ class UpdateJob extends ContainerAwareJob
 
         $code = <<<END
 <?php
-
+use Sami\Parser\Filter\TrueFilter;
 \$iterator = Symfony\Component\Finder\Finder::create()
     ->files()
     ->name('*.php')
+    ->name('*.module')
+    ->name('*.theme')
+    ->name('*.inc')
+    ->name('*.install')
+    ->name('*.profile')
+    ->name('*.test')
+    ->name('*.engine')
+    ->name('*.html.twig')
     ->exclude('Resources')
     ->exclude('Tests')
-    ->in(\$dir = '{$config->getRepositoryPath()}/{$config->getDocsPath()}');
+    ->in(\$dir = '{$config->getRepositoryPath()}/');
 
 \$versions = Sami\Version\GitVersionCollection::create(\$dir)
 $tagsCode$refsCode;
 
 return new Sami\Sami(\$iterator, array(
     'title' => '{$config->getTitle()}',
-    'build_dir' => '$cachePath/build/%version%',
+    'build_dir' => '{$config->getDocsPath()}/{$package->getFqn()}/build/%version%',
     'cache_dir' => '$cachePath/cache/%version%',
     'default_opened_level' => 2,
     'theme' => '{$config->getTheme()}',
+    'insert_todos' => true,
+    'filter' => function () {
+        return new TrueFilter();
+    },
 $templatesCode    'versions' => \$versions
 ));
 END;

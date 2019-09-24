@@ -138,15 +138,15 @@ class ConfigurationHelper
 
                     break;
 
-	            case 'Bitbucket':
-		            /** @var \Terramar\Packages\Plugin\Bitbucket\RemoteConfiguration $remoteConfig */
-		            $remoteConfig = $this->entityManager->getRepository('Terramar\Packages\Plugin\Bitbucket\RemoteConfiguration')
-		                                                ->findOneBy(['remote' => $remote]);
-		            if (!$remoteConfig) {
-			            throw new \RuntimeException('Unable to find RemoteConfiguration for ' . $remote->getAdapter() . ' ' . $remote->getName());
-		            }
+              case 'Bitbucket':
+                /** @var \Terramar\Packages\Plugin\Bitbucket\RemoteConfiguration $remoteConfig */
+                $remoteConfig = $this->entityManager->getRepository('Terramar\Packages\Plugin\Bitbucket\RemoteConfiguration')
+                                                    ->findOneBy(['remote' => $remote]);
+                if (!$remoteConfig) {
+                  throw new \RuntimeException('Unable to find RemoteConfiguration for ' . $remote->getAdapter() . ' ' . $remote->getName());
+                }
 
-		            break;
+                break;
             }
 
             return $options;
