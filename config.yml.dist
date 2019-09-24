@@ -43,6 +43,9 @@ packages:
   # Satis-generated files.
   secure_satis:  false
 
+  # Path to sami binary.
+  sami_path: 'vendor/bin/sami.php'
+
   resque:
     # Redis server host.
     host:     'redis://redis-master'

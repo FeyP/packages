@@ -34,6 +34,7 @@ class PackagesConfiguration implements ConfigurationInterface
                 ->scalarNode('archive_skip_dev')->defaultValue(true)->end()
                 ->scalarNode('contact_email')->defaultValue('')->end()
                 ->scalarNode('secure_satis')->defaultFalse()->end()
+                ->scalarNode('sami_path')->defaultValue('vendor/bin/sami.php')->end()
                 ->scalarNode('output_dir')->defaultValue('%app.root_dir%/satis')->end()
                 ->arrayNode('resque')
                     ->addDefaultsIfNotSet()

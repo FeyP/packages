@@ -67,6 +67,7 @@ class PackagesExtension extends Extension implements CompilerAwareExtensionInter
             'output_dir'    => $container->getParameterBag()->resolveValue($config['output_dir']),
             'contact_email' => $config['contact_email'],
             'secure_satis'  => $config['secure_satis'],
+            'sami_path' => $config['sami_path'],
         ]);
 
         $collector = $container->register('router.collector', 'Terramar\Packages\Router\RouteCollector')

@@ -41,8 +41,13 @@ class UpdateJob extends ContainerAwareJob
         $this->writeConfig($configFilePath, $package, $config);
         echo "Wrote config file to: $configFilePath\n";
 
+        $packages_config = $this->getContainer()->getParameter('packages.configuration');
         $finder = new PhpExecutableFinder();
-        $builder = new ProcessBuilder(['vendor/bin/sami.php', 'update', $configFilePath]);
+        $builder = new ProcessBuilder([
+          $packages_config['sami_path'],
+          'update',
+          $configFilePath,
+        ]);
         $builder->setEnv('HOME', $this->getContainer()->getParameter('app.root_dir'));
         $builder->setPrefix($finder->find());
 
@@ -148,7 +153,7 @@ class UpdateJob extends ContainerAwareJob
     {
         $cachePath = $this->getCacheDir($package);
         $tagsCode = $config->getTags() ? '    ->addFromTags(\'' . implode('\',\'',
-                explode(',', $config->getTags())) . '\)' . PHP_EOL : '';
+                explode(',', $config->getTags())) . '\')' . PHP_EOL : '';
         $refsCode = '';
         foreach ($this->getRefs($config) as $ref) {
             $refsCode .= '    ->add(\'' . $ref[0] . '\', \'' . $ref[1] . '\')' . PHP_EOL;
