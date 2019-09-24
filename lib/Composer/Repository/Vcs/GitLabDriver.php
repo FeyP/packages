@@ -120,7 +120,7 @@ class GitLabDriver extends VcsDriver
         }
 
         $resource = $this->getApiUrl() . '/repository/files/' . $file . '/raw?ref=' . $identifier;
-        
+
         try {
             $content = $this->getContents($resource);
         } catch (TransportException $e) {
@@ -155,7 +155,7 @@ class GitLabDriver extends VcsDriver
      */
     public function getRepositoryUrl()
     {
-        return $this->isPrivate ? $this->project['ssh_url_to_repo'] : $this->project['http_url_to_repo'];
+        return /*$this->isPrivate ? $this->project['ssh_url_to_repo'] :*/ $this->project['http_url_to_repo'];
     }
 
     /**
