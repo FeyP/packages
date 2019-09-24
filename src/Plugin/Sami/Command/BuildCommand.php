@@ -129,6 +129,18 @@ class BuildCommand extends ContainerAwareCommand
       $this->getEntityManager()->persist($config_sami);
       $this->getEntityManager()->flush($config_sami);
 
+      $docs_path = $config_sami->getDocsPath() . DIRECTORY_SEPARATOR . $package->getFqn() . DIRECTORY_SEPARATOR . 'build' . DIRECTORY_SEPARATOR;
+      if (file_exists($docs_path) && is_dir($docs_path)) {
+        $output->writeln(sprintf('<comment>Removing old documentation from %s...</comment>', $docs_path));
+        $this->emptyAndRemoveDirectory($docs_path);
+      }
+
+      $cache_dir = $this->container->getParameter('app.cache_dir') . '/sami/' . $package->getFqn();
+      if (file_exists($cache_dir) && is_dir($cache_dir)) {
+        $output->writeln(sprintf('<comment>Removing old cache from %s...</comment>', $cache_dir));
+        $this->emptyAndRemoveDirectory($cache_dir);
+      }
+
       try {
         $job = new UpdateJob();
         $job->run(['id' => $package->getId()]);
