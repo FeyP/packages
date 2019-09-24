@@ -85,7 +85,7 @@ class ConfigurationHelper
                 'directory'  => 'dist',
                 'format'     => 'tar',
                 'prefix-url' => $this->config['base_path'],
-                'skip-dev'   => true,
+                'skip-dev'   => $this->config['archive_skip_dev'],
             ];
         }
 

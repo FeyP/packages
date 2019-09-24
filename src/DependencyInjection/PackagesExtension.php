@@ -63,6 +63,7 @@ class PackagesExtension extends Extension implements CompilerAwareExtensionInter
             'homepage'      => $config['homepage'],
             'base_path'     => $config['base_path'],
             'archive'       => $config['archive'],
+            'archive_skip_dev' => $config['archive_skip_dev'],
             'output_dir'    => $container->getParameterBag()->resolveValue($config['output_dir']),
             'contact_email' => $config['contact_email'],
             'secure_satis'  => $config['secure_satis'],
