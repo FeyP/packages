@@ -37,6 +37,9 @@ class Plugin implements PluginInterface
                 [Actions::PACKAGE_EDIT, 'Terramar\Packages\Plugin\Sami\Controller::editAction'])
             ->addMethodCall('registerController',
                 [Actions::PACKAGE_UPDATE, 'Terramar\Packages\Plugin\Sami\Controller::updateAction']);
+
+        $container->getDefinition('packages.command_registry')
+            ->addMethodCall('addCommand', ['Terramar\Packages\Plugin\Sami\Command\BuildCommand']);
     }
 
     /**
