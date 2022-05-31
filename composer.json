@@ -20,7 +20,7 @@
     "symfony/process": "~2.7",
     "symfony/yaml": "~2.7",
     "composer/satis": "^1.0",
-    "composer/composer": "1.4.3",
+    "composer/composer": "1.10.26",
     "sami/sami": "~1.4",
     "m4tthumphrey/php-gitlab-api": "^9.4",
     "knplabs/github-api": "~1.4",
